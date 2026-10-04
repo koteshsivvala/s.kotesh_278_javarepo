@@ -1,24 +1,35 @@
-class Counter {
-    static int count = 0; // shared by all objects
-    int id;
+class Shape {
+    String color;
 
-    Counter() {
-        count++;
-        id = count;
+    Shape(String color) {
+        this.color = color;
     }
 
-    static void showCount() {
-        // Cannot access 'id' here because it is an instance variable
-        System.out.println("Total objects: " + count);
+    void draw() {
+        System.out.println("Drawing " + color + " shape");
+    }
+}
+
+class Rectangle extends Shape {
+    double width, height;
+
+    Rectangle(String color, double w, double h) {
+        super(color);      // call parent constructor
+        width = w;
+        height = h;
+    }
+
+    void draw() {
+        super.draw();      // call parent method
+        System.out.println("Rectangle: " + width + "x" + height);
     }
 }
 
 public class Main {
     public static void main(String[] args) {
 
-        Counter c1 = new Counter();
-        Counter c2 = new Counter();
+        Rectangle r = new Rectangle("Blue", 10, 5);
 
-        Counter.showCount();
+        r.draw();
     }
 }
